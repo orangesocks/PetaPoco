@@ -1,9 +1,3 @@
-// <copyright company="PetaPoco - CollaboratingPlatypus">
-//      Apache License, Version 2.0 https://github.com/CollaboratingPlatypus/PetaPoco/blob/master/LICENSE.txt
-// </copyright>
-// <author>PetaPoco - CollaboratingPlatypus</author>
-// <date>2016/01/06</date>
-
 using System;
 using System.Configuration;
 using System.Data;
@@ -84,12 +78,12 @@ namespace PetaPoco.Tests.Integration.Databases
             }
         }
 
+#if !NETCOREAPP
         [Fact]
         public void Construct_GivenConnectionStringName_ShouldBeValid()
         {
             var connectionString = DB.ConnectionString;
-            var entry = ConfigurationManager.ConnectionStrings.Cast<ConnectionStringSettings>().FirstOrDefault(c =>
-                c.ConnectionString.Equals(connectionString));
+            var entry = ConfigurationManager.ConnectionStrings.Cast<ConnectionStringSettings>().FirstOrDefault(c => c.ConnectionString.Equals(connectionString));
 
             using (var db = new Database(entry.Name))
             {
@@ -99,6 +93,7 @@ namespace PetaPoco.Tests.Integration.Databases
                 _note.ShouldBe(otherNote);
             }
         }
+#endif
 
         [Fact]
         public void Construct_GivenConnectionStringAndProvider_ShouldBeValid()
@@ -134,6 +129,24 @@ namespace PetaPoco.Tests.Integration.Databases
                 var transaction = (IDbTransaction) DB.GetType().GetField("_transaction", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(DB);
                 transaction.IsolationLevel.ShouldBe(DB.IsolationLevel.Value);
             }
+        }
+
+        [Fact]
+        public void OpenShredConnection_WhenCalled_ShouldBeValid()
+        {
+            DB.Connection.ShouldBeNull();
+            DB.OpenSharedConnection();
+            DB.Connection.State.ShouldBe(ConnectionState.Open);
+            DB.CloseSharedConnection();
+        }
+
+        [Fact]
+        public async void OpenSharedConnectionAsync_WhenCalled_ShouldBeValid()
+        {
+            DB.Connection.ShouldBeNull();
+            await DB.OpenSharedConnectionAsync();
+            DB.Connection.State.ShouldBe(ConnectionState.Open);
+            DB.CloseSharedConnection();
         }
     }
 }

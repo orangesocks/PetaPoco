@@ -1,10 +1,4 @@
-﻿// <copyright company="PetaPoco - CollaboratingPlatypus">
-//      Apache License, Version 2.0 https://github.com/CollaboratingPlatypus/PetaPoco/blob/master/LICENSE.txt
-// </copyright>
-// <author>PetaPoco - CollaboratingPlatypus</author>
-// <date>2015/12/27</date>
-
-using System;
+﻿using System;
 using Shouldly;
 using Xunit;
 
@@ -56,9 +50,9 @@ namespace PetaPoco.Tests.Unit.Core
                 wasCalled = true;
                 return null;
             };
-            
-             _mapper.GetFromDbConverter(typeof(Order).GetProperty(nameof(Order.OrderId)), typeof(int));
-            
+
+            _mapper.GetFromDbConverter(typeof(Order).GetProperty(nameof(Order.OrderId)), typeof(int));
+
             wasCalled.ShouldBeTrue();
         }
 
@@ -235,7 +229,6 @@ namespace PetaPoco.Tests.Unit.Core
                 return value;
             }
         }
-
 
         public class Order
         {

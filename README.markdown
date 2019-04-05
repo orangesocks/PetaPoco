@@ -1,6 +1,16 @@
-|Master|Development|Nuget|Nuget Core|Nuget Core Compiled|
-|:-----|:----------|:----|:---------|:------------------|
-|[![Build status](https://ci.appveyor.com/api/projects/status/1vodaox1reremsvj/branch/master?svg=true)](https://ci.appveyor.com/project/collaboratingplatypus/petapoco/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/1vodaox1reremsvj/branch/development?svg=true)](https://ci.appveyor.com/project/collaboratingplatypus/petapoco/branch/development)|[![Nuget Downloads](https://buildstats.info/nuget/PetaPoco)](https://www.nuget.org/packages/PetaPoco/)|[![Nuget Downloads core](https://buildstats.info/nuget/PetaPoco.Core)](https://www.nuget.org/packages/PetaPoco.Core)|[![Nuget Downloads core](https://buildstats.info/nuget/PetaPoco.Core.Compiled)](https://www.nuget.org/packages/PetaPoco.Core.Compiled)|
+### Version 6 - Netstandard 2.0, 4.0, 4.5+
+
+Read more about this [update](https://github.com/CollaboratingPlatypus/PetaPoco/wiki/V6NetStandard2-0)
+
+|Master|Development|Nuget|
+|:-----|:----------|:----|
+|[![Build status](https://ci.appveyor.com/api/projects/status/1vodaox1reremsvj/branch/master?svg=true)](https://ci.appveyor.com/project/collaboratingplatypus/petapoco/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/1vodaox1reremsvj/branch/development?svg=true)](https://ci.appveyor.com/project/collaboratingplatypus/petapoco/branch/development)|[![Nuget Downloads](https://buildstats.info/nuget/PetaPoco.Compiled)](https://www.nuget.org/packages/PetaPoco.Compiled/)|
+
+### Version 5 - Legacy
+
+|Nuget (Single file)|Nuget Core (+t4 templates)|Nuget Core Compiled (dll)|
+|:----|:---------|:------------------|
+|[![Nuget Downloads](https://buildstats.info/nuget/PetaPoco)](https://www.nuget.org/packages/PetaPoco/)|[![Nuget Downloads core](https://buildstats.info/nuget/PetaPoco.Core)](https://www.nuget.org/packages/PetaPoco.Core)|[![Nuget Downloads core](https://buildstats.info/nuget/PetaPoco.Core.Compiled)](https://www.nuget.org/packages/PetaPoco.Core.Compiled)|
 
 <img align="right" alt="PetaPoco Logo" width="128" src="https://raw.githubusercontent.com/CollaboratingPlatypus/PetaPoco/master/Media/Logo2/PetaPocoLogo2_256.png">
 
@@ -8,14 +18,13 @@
 
 Originally the brainchild of [Brad Robinson],
 
-## PetaPoco is a tiny, fast, single-file micro-ORM for .NET and Mono
+## PetaPoco is a tiny & fast micro-ORM for .NET
 
 * Like [Dapper], it's fast because it uses dynamic method generation (MSIL) to assign column values to properties
-* Like [Massive] it's available as single file that you easily add to any project or complied.
-* Like [Massive], it now also supports dynamic Expandos too - [read more](http://www.toptensoftware.com/blog/posts/104-PetaPoco-Not-So-Poco-or-adding-support-for-dynamic)
-* Unlike [Massive] it works with strongly typed [POCO]'s
+* Like [Massive] it's available as single file that you easily add to any project or complied. (V5 only)
+* Like [Massive], it now also supports dynamic Expandos too
 * Like [ActiveRecord], it supports a close relationship between object and database table
-* Like [SubSonic], it supports generation of poco classes with T4 templates
+* Like [SubSonic], it supports generation of poco classes with T4 templates (V5 only)
 
 ## Features at a Glance
 
@@ -29,14 +38,13 @@ Originally the brainchild of [Brad Robinson],
 * Great performance by eliminating Linq and fast property assignment with DynamicMethod generation.
 * The query language is good ole SQL.
 * Includes a low friction SQL builder class that makes writing inline SQL *much* easier.
-* Includes T4 templates to automatically generate POCO classes for you.
+* Includes T4 templates to automatically generate POCO classes for you. (V5)
 * Hooks for logging exceptions, installing value converters and mapping columns to properties without attributes.
 * Works with SQL Server, SQL Server CE, MS Access, SQLite, MySQL, MariaDB, Firebird, and PostgreSQL. (Oracle supported but does not have integration tests).
-* Works under .NET 4.0/4.5/4.6 or Mono 2.8 and later.
+* Works under Net Standard 2.0, .NET 4.0/4.5+ or Mono 2.8 and later.
 * Has [Xunit] unit tests.
 * Has supported DBs integration tests.
-* OpenSource (Apache License)
-* All of this in about 1,500 lines of code
+* OpenSource (MIT License or Apache 2.0)
 
 ## Super easy use and configuration
 
@@ -71,9 +79,7 @@ For configuration, code examples and other general information [See the docs]
 
 PetaPoco is available from:
 
-* **NuGet Peta** - <https://www.nuget.org/packages/PetaPoco/> - A single file include with [T4 text templates](https://msdn.microsoft.com/en-us/library/bb126445.aspx) to automatically build your pocos for you.
-* **NuGet Peta Core** - <https://www.nuget.org/packages/PetaPoco.Core/> - A single file include.
-* **NuGet Peta Core Compiled** - <https://www.nuget.org/packages/PetaPoco.Core.Compiled/> - A compiled version which your project references.
+* **NuGet Peta Complied** - <https://www.nuget.org/packages/PetaPoco.Compiled> - A compiled version which your project references.
 
 [Brad Robinson]:http://www.toptensoftware.com/
 [Massive]:https://github.com/FransBouma/Massive
@@ -88,6 +94,12 @@ PetaPoco is available from:
 [Contributing to Open Source on GitHub]:https://guides.github.com/activities/contributing-to-open-source/
 [we have a special place to honour them]:./honourRoll.md
 [fluent configuration]:https://github.com/CollaboratingPlatypus/PetaPoco/wiki/Fluent-Configuration
+
+## Add-ons
+
+* [PetaPoco.SqlKata](//github.com/asherber/PetaPoco.SqlKata) lets you use the powerful query builder [SqlKata](//sqlkata.com)  to [build SQL queries](//github.com/CollaboratingPlatypus/PetaPoco/wiki/Building-SQL-Queries) for PetaPoco.
+* [StaTypPocoQueries.PetaPoco](//github.com/asherber/StaTypPocoQueries.PetaPoco) provides the ability to use some simple, strongly typed, Intellisensed LINQ expressions in your queries.
+
 
 ## Contributing
 

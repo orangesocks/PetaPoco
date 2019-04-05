@@ -1,10 +1,4 @@
-﻿// <copyright company="PetaPoco - CollaboratingPlatypus">
-//      Apache License, Version 2.0 https://github.com/CollaboratingPlatypus/PetaPoco/blob/master/LICENSE.txt
-// </copyright>
-// <author>PetaPoco - CollaboratingPlatypus</author>
-// <date>2016/07/16</date>
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -132,7 +126,7 @@ namespace PetaPoco
                     sb.Append("\n");
                 }
 
-                var sql = ParametersHelper.ProcessParams(_sql, _args, args);
+                var sql = ParametersHelper.ProcessQueryParams(_sql, _args, args);
 
                 if (Is(lhs, "WHERE ") && Is(this, "WHERE "))
                     sql = "AND " + sql.Substring(6);

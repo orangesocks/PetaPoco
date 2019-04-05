@@ -1,10 +1,4 @@
-﻿// <copyright company="PetaPoco - CollaboratingPlatypus">
-//      Apache License, Version 2.0 https://github.com/CollaboratingPlatypus/PetaPoco/blob/master/LICENSE.txt
-// </copyright>
-// <author>PetaPoco - CollaboratingPlatypus</author>
-// <date>2015/12/30</date>
-
-using System;
+﻿using System;
 
 namespace PetaPoco
 {
@@ -36,7 +30,8 @@ namespace PetaPoco
 
         /// <summary>
         ///     The update template. If not null, this template is used for generating the update section instead of the deafult
-        ///     string.Format("{0} = {1}{2}", colName, paramPrefix, index"). Setting this allows DB related interactions, such as "{0} = CAST({1}{2} AS
+        ///     string.Format("{0} = {1}{2}", colName, paramPrefix, index"). Setting this allows DB related interactions, such as
+        ///     "{0} = CAST({1}{2} AS
         ///     json)"
         /// </summary>
         public string UpdateTemplate { get; set; }
@@ -46,7 +41,6 @@ namespace PetaPoco
         /// </summary>
         public ColumnAttribute()
         {
-            ForceToUtc = false;
         }
 
         /// <summary>
@@ -56,7 +50,6 @@ namespace PetaPoco
         public ColumnAttribute(string name)
         {
             Name = name;
-            ForceToUtc = false;
         }
     }
 }

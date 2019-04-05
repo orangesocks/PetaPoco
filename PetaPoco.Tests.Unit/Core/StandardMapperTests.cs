@@ -1,11 +1,4 @@
-﻿// <copyright company="PetaPoco - CollaboratingPlatypus">
-//      Apache License, Version 2.0 https://github.com/CollaboratingPlatypus/PetaPoco/blob/master/LICENSE.txt
-// </copyright>
-// <author>PetaPoco - CollaboratingPlatypus</author>
-// <date>2015/12/25</date>
-
-using System;
-using System.Runtime.CompilerServices;
+﻿using System;
 using Shouldly;
 using Xunit;
 
@@ -18,7 +11,6 @@ namespace PetaPoco.Tests.Unit.Core
         public StandardMapperTests()
             : this(null)
         {
-
         }
 
         protected StandardMapperTests(IMapper mapper)

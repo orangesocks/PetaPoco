@@ -1,9 +1,3 @@
-// <copyright company="PetaPoco - CollaboratingPlatypus">
-//      Apache License, Version 2.0 https://github.com/CollaboratingPlatypus/PetaPoco/blob/master/LICENSE.txt
-// </copyright>
-// <author>PetaPoco - CollaboratingPlatypus</author>
-// <date>2015/12/28</date>
-
 using System;
 using System.Linq;
 using System.Reflection;
@@ -145,6 +139,7 @@ namespace PetaPoco
                     ci.ColumnName = column.Name ?? InflectColumnName(Inflector.Instance, pi.Name);
                     ci.ForceToUtc = column.ForceToUtc;
                     ci.ResultColumn = (column as ResultColumnAttribute) != null;
+                    ci.AutoSelectedResultColumn = (column as ResultColumnAttribute)?.IncludeInAutoSelect == IncludeInAutoSelect.Yes;
                     ci.InsertTemplate = column.InsertTemplate;
                     ci.UpdateTemplate = column.UpdateTemplate;
                 }
@@ -163,6 +158,7 @@ namespace PetaPoco
                     if (valueConverter != null)
                         return valueConverter.ConvertFromDb;
                 }
+
                 return null;
             };
             ToDbConverter = (pi) =>
@@ -173,6 +169,7 @@ namespace PetaPoco
                     if (valueConverter != null)
                         return valueConverter.ConvertToDb;
                 }
+
                 return null;
             };
         }
@@ -214,7 +211,7 @@ namespace PetaPoco
         /// <returns>A Func that can do the conversion, or null for no conversion</returns>
         public Func<object, object> GetFromDbConverter(PropertyInfo targetProperty, Type sourceType)
         {
-            return FromDbConverter != null ? FromDbConverter(targetProperty, sourceType) : null;
+            return FromDbConverter?.Invoke(targetProperty, sourceType);
         }
 
         /// <summary>
@@ -229,7 +226,7 @@ namespace PetaPoco
         /// </remarks>
         public Func<object, object> GetToDbConverter(PropertyInfo sourceProperty)
         {
-            return ToDbConverter != null ? ToDbConverter(sourceProperty) : null;
+            return ToDbConverter?.Invoke(sourceProperty);
         }
     }
 }

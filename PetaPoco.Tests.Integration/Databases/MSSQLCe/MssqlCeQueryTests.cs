@@ -1,16 +1,10 @@
-﻿// <copyright company="PetaPoco - CollaboratingPlatypus">
-//      Apache License, Version 2.0 https://github.com/CollaboratingPlatypus/PetaPoco/blob/master/LICENSE.txt
-// </copyright>
-// <author>PetaPoco - CollaboratingPlatypus</author>
-// <date>2016/01/28</date>
-
-using System;
+﻿using System;
 using Shouldly;
 using Xunit;
 
 namespace PetaPoco.Tests.Integration.Databases.MSSQLCe
 {
-    [Collection("MssqlCeTests")]
+    [Collection("MssqlCe")]
     public class MssqlCeQueryTests : BaseQueryTests
     {
         public MssqlCeQueryTests()
@@ -18,20 +12,19 @@ namespace PetaPoco.Tests.Integration.Databases.MSSQLCe
         {
         }
 
-
         [Fact]
         public virtual void Query_ForEnumWithUnderlyingType_ShouldConvertValues()
         {
             foreach (var sqltype in new[] { "TINYINT", "SMALLINT", "INTEGER", "BIGINT" })
             {
                 var t1 = DB.Single<T1>($"SELECT CONVERT({sqltype}, 1) AS [C]");
-                t1.C.ShouldBe((E1)1);
+                t1.C.ShouldBe((E1) 1);
                 var t2 = DB.Single<T2>($"SELECT CONVERT({sqltype}, 1) AS [C]");
-                t2.C.ShouldBe((E2)1);
+                t2.C.ShouldBe((E2) 1);
                 var t3 = DB.Single<T3>($"SELECT CONVERT({sqltype}, 1) AS [C]");
-                t3.C.ShouldBe((E3)1);
+                t3.C.ShouldBe((E3) 1);
                 var t4 = DB.Single<T4>($"SELECT CONVERT({sqltype}, 1) AS [C]");
-                t4.C.ShouldBe((E4)1);
+                t4.C.ShouldBe((E4) 1);
             }
         }
 
@@ -45,7 +38,7 @@ namespace PetaPoco.Tests.Integration.Databases.MSSQLCe
             // INTEGER => enum?
             var t2 = DB.Single<TestClass>("SELECT 1 AS [EnumValue]");
             t2.EnumValue.HasValue.ShouldBeTrue();
-            t2.EnumValue.Value.ShouldBe((E3)1);
+            t2.EnumValue.Value.ShouldBe((E3) 1);
 
             // TEXT => enum?
             var t3 = DB.Single<TestClass>("SELECT 'Hello' AS [EnumValue]");

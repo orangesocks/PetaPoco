@@ -1,10 +1,4 @@
-﻿// <copyright company="PetaPoco - CollaboratingPlatypus">
-//      Apache License, Version 2.0 https://github.com/CollaboratingPlatypus/PetaPoco/blob/master/LICENSE.txt
-// </copyright>
-// <author>PetaPoco - CollaboratingPlatypus</author>
-// <date>2015/12/30</date>
-
-using System;
+﻿using System;
 
 namespace PetaPoco
 {
@@ -21,7 +15,7 @@ namespace PetaPoco
         /// <returns>
         ///     The column name.
         /// </returns>
-        public string Value { get; private set; }
+        public string Value { get; }
 
         /// <summary>
         ///     The sequence name.
@@ -37,16 +31,13 @@ namespace PetaPoco
         /// <returns>
         ///     True if the primary key is auto incrementing; else, False.
         /// </returns>
-        public bool AutoIncrement { get; set; }
+        public bool AutoIncrement { get; set; } = true;
 
         /// <summary>
         ///     Constructs a new instance of the <seealso cref="PrimaryKeyAttribute" />.
         /// </summary>
         /// <param name="primaryKey">The name of the primary key column.</param>
         public PrimaryKeyAttribute(string primaryKey)
-        {
-            Value = primaryKey;
-            AutoIncrement = true;
-        }
+            => Value = primaryKey;
     }
 }
