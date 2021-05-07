@@ -2,13 +2,15 @@
 
 # Welcome to the official PetaPoco repository
 
-Originally the brainchild of [Brad Robinson]
+Originally the brainchild of [Brad Robinson]. 
+
+PetaPoco is currently maintained and exteneded by Wade Baglin (@pleb) and Aaron Sherber (@asherber).
 
 ## Version 6 - Netstandard 2.0+, 4.0, 4.5+
 
 Read more about the [v6 update](https://github.com/CollaboratingPlatypus/PetaPoco/wiki/V6NetStandard2-0)
 
-PetaPoco is available from: **NuGet [PetaPoco.Complied](https://www.nuget.org/packages/PetaPoco.Compiled)**
+PetaPoco is available from: **NuGet [PetaPoco.Compiled](https://www.nuget.org/packages/PetaPoco.Compiled)**
 
 |Master|Development|Nuget|
 |:-----|:----------|:----|
@@ -22,7 +24,7 @@ For configuration, code examples and other general information [See the docs]
 
 * [PetaPoco.SqlKata](//github.com/asherber/PetaPoco.SqlKata) lets you use the powerful query builder [SqlKata](//sqlkata.com)  to [build SQL queries](//github.com/CollaboratingPlatypus/PetaPoco/wiki/Building-SQL-Queries) for PetaPoco.
 * [StaTypPocoQueries.PetaPoco](//github.com/asherber/StaTypPocoQueries.PetaPoco) provides the ability to use some simple, strongly typed, Intellisensed LINQ expressions in your queries.
-* [PetaPoco.DBEntityGenerator](//hippasus/PetaPoco.DBEntityGenerator) lets you generate Pocos from your DB (T4 template replacement).
+* [PetaPoco.DBEntityGenerator](//github.com/hippasus/PetaPoco.DBEntityGenerator) lets you generate Pocos from your DB (T4 template replacement).
 
 ## Version 5 - Legacy
 

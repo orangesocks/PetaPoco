@@ -375,6 +375,11 @@ namespace PetaPoco.Core
                     return delegate(object src) { return Guid.Parse((string) src); };
                 }
 
+                if (dstType == typeof(string) && srcType == typeof(Guid))
+                {
+                    return delegate(object src) { return Convert.ToString(src); };
+                }
+                
                 return delegate(object src) { return Convert.ChangeType(src, dstType, null); };
             }
 
@@ -394,10 +399,8 @@ namespace PetaPoco.Core
             return default(T);
         }
 
-        internal static void FlushCaches()
-        {
-            _pocoDatas.Flush();
-        }
+        public static void FlushCaches()
+            => _pocoDatas.Flush();
 
         public string GetColumnName(string propertyName)
         {
